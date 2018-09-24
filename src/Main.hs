@@ -17,10 +17,16 @@ main =
         "\n    , " 
         (letters ++ (List.map T.toLower letters) ++ packageFunctions)
     , [ "\n    )\n\n\n" ]
-    , [ "type Text v\n\
+    , [ "{-| Text, with human readable letter content `v`.\n\
+        \   hello : Text (H (E (L (L (O ())))))\n\
+        \   hello =\n\
+        \       h (e (l (l (o textEnd))))\n\
+        \-}\n"
+      , "type Text v\n\
         \    = Text v String\n\n\n" 
       ]
-    , [ "textEnd : Text ()\n\
+    , [ "{-| The end of a `Text`-}\n"
+      , "textEnd : Text ()\n\
         \textEnd =\n\
         \    Text () \"\"\n\n\n"
       ]
@@ -28,7 +34,10 @@ main =
         \makeLetter letterCtor letterStr (Text v str) =\n\
         \    Text (letterCtor v) (letterStr ++ str)\n\n\n"
       ]
-    , [ "toString : Text v -> String\n\
+    , [ "{-| Turn a `Text` into a `String`\n\
+        \   Text.toString (h (e (l (l (o textEnd))))) == \"HELLO\"\n\
+        \-}\n"
+      , "toString : Text v -> String\n\
         \toString (Text _ str) =\n\
         \    str\n\n\n"
       ]
@@ -42,12 +51,18 @@ main =
 
 letterTypeAndFunction :: Text -> Text
 letterTypeAndFunction letter =
-    [ "type "
+    [ "{-| The letter \""
+    , letter
+    , "\" -}\n"
+    , "type "
     , letter
     , " v\n"
     , "    = "
     , letter
     , " v\n\n\n"
+    , "{-| The letter \""
+    , letter
+    , "\" -}\n"
     , T.toLower letter
     , " : Text v -> Text (" 
     , letter
