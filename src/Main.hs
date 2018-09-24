@@ -31,8 +31,8 @@ main =
         \    Text () \"\"\n\n\n"
       ]
     , [ "makeLetter : (value -> letter) -> String -> Text value -> Text letter\n\
-        \makeLetter letterCtor letterStr (Text v str) =\n\
-        \    Text (letterCtor v) (letterStr ++ str)\n\n\n"
+        \makeLetter letterCtor letterStr (Text value str) =\n\
+        \    Text (letterCtor value) (letterStr ++ str)\n\n\n"
       ]
     , [ "{-| Turn a `Text` into a `String`\n\
         \   Text.toString (h (e (l (l (o textEnd))))) == \"HELLO\"\n\

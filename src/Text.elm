@@ -73,8 +73,8 @@ textEnd =
 
 
 makeLetter : (value -> letter) -> String -> Text value -> Text letter
-makeLetter letterCtor letterStr (Text v str) =
-    Text (letterCtor v) (letterStr ++ str)
+makeLetter letterCtor letterStr (Text value str) =
+    Text (letterCtor value) (letterStr ++ str)
 
 
 {-| Turn a `Text` into a `String`
