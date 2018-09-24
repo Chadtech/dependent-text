@@ -8,6 +8,7 @@ import qualified Data.Text as T
 import qualified Data.List as List
 import Flow
 
+
 main :: IO ()
 main = 
     [ [ "module Text exposing\n\
@@ -17,10 +18,14 @@ main =
         "\n    , " 
         (letters ++ (List.map T.toLower letters) ++ packageFunctions)
     , [ "\n    )\n\n\n" ]
-    , [ "{-| Text, with human readable letter content `v`.\n\
-        \   hello : Text (H (E (L (L (O ())))))\n\
-        \   hello =\n\
-        \       h (e (l (l (o textEnd))))\n\
+
+    , [ "{-|\n@docs Text, textEnd, toString, " ]
+    , letters ++ (List.map T.toLower letters)
+          |> List.intersperse ", "
+    , [ "\n-}\n\n\n{-| Text, with human readable letter content `v`.\n\
+        \    hello : Text (H (E (L (L (O ())))))\n\
+        \    hello =\n\
+        \        h (e (l (l (o textEnd))))\n\
         \-}\n"
       , "type Text v\n\
         \    = Text v String\n\n\n" 
@@ -35,7 +40,7 @@ main =
         \    Text (letterCtor value) (letterStr ++ str)\n\n\n"
       ]
     , [ "{-| Turn a `Text` into a `String`\n\
-        \   Text.toString (h (e (l (l (o textEnd))))) == \"HELLO\"\n\
+        \    Text.toString (h (e (l (l (o textEnd))))) == \"HELLO\"\n\
         \-}\n"
       , "toString : Text v -> String\n\
         \toString (Text _ str) =\n\
